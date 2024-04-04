@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import csv
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, roc_curve, auc
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
@@ -30,34 +30,34 @@ scaler = StandardScaler()
 Train_X = scaler.fit_transform(Train_X)
 Test_X = scaler.transform(Test_X)
 
-random_forest = RandomForestClassifier(random_state=0, class_weight='balanced')
-random_forest.fit(Train_X, Train_y)
+decision_tree = DecisionTreeClassifier(random_state=0, class_weight='balanced')
+decision_tree.fit(Train_X, Train_y)
 
-Pred_y_RF = random_forest.predict(Test_X)
+Pred_y_DT = decision_tree.predict(Test_X)
 
-classification_report_RF = classification_report(Test_y, Pred_y_RF)
-confusion_matrix_RF = confusion_matrix(Test_y, Pred_y_RF)
-accuracy_RF = accuracy_score(Test_y, Pred_y_RF)
+classification_report_DT = classification_report(Test_y, Pred_y_DT)
+confusion_matrix_DT = confusion_matrix(Test_y, Pred_y_DT)
+accuracy_DT = accuracy_score(Test_y, Pred_y_DT)
 
 print('##########')
-print('Using Random Forest:')
+print('Using Decision Tree Classifier:')
 print('Healthy vs Cancer')
-print(classification_report_RF)
-print(confusion_matrix_RF)
+print(classification_report_DT)
+print(confusion_matrix_DT)
 
-y_pred_prob_RF = random_forest.predict_proba(Test_X)[:, 1]
+y_pred_prob_DT = decision_tree.predict_proba(Test_X)[:, 1]
 
-fpr_RF, tpr_RF, thresholds_RF = roc_curve(Test_y, y_pred_prob_RF)
-roc_auc_RF = auc(fpr_RF, tpr_RF)
+fpr_DT, tpr_DT, thresholds_DT = roc_curve(Test_y, y_pred_prob_DT)
+roc_auc_DT = auc(fpr_DT, tpr_DT)
 
 plt.figure(figsize=(8, 6))
-plt.plot(fpr_RF, tpr_RF, color='blue', lw=2, label='ROC curve (area = %0.2f)' % roc_auc_RF)
+plt.plot(fpr_DT, tpr_DT, color='blue', lw=2, label='ROC curve (area = %0.2f)' % roc_auc_DT)
 plt.plot([0, 1], [0, 1], color='black', linestyle='--')
 plt.xlim([0.0, 1.0])
 plt.ylim([0.0, 1.1])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('Receiver Operating Characteristic (ROC) Curve - Random Forest')
+plt.title('Receiver Operating Characteristic (ROC) Curve - Decision Tree')
 plt.legend(loc='lower right')
 plt.show()
 
@@ -89,24 +89,24 @@ scaler = StandardScaler()
 Train_X = scaler.fit_transform(Train_X)
 Test_X = scaler.transform(Test_X)
 
-random_forest = RandomForestClassifier(random_state=0, class_weight='balanced')
-random_forest.fit(Train_X, Train_y)
+decision_tree = DecisionTreeClassifier(random_state=0, class_weight='balanced')
+decision_tree.fit(Train_X, Train_y)
 
-Pred_y_RF = random_forest.predict(Test_X)
-Pred_y_RF_train = random_forest.predict(Train_X)
+Pred_y_DT = decision_tree.predict(Test_X)
+Pred_y_DT_train = decision_tree.predict(Train_X)
 
-classification_report_RF = classification_report(Test_y, Pred_y_RF)
-confusion_matrix_RF = confusion_matrix(Test_y, Pred_y_RF)
-accuracy_RF = accuracy_score(Test_y, Pred_y_RF)
-accuracy_RF_train = accuracy_score(Train_y, Pred_y_RF_train)
+classification_report_DT = classification_report(Test_y, Pred_y_DT)
+confusion_matrix_DT = confusion_matrix(Test_y, Pred_y_DT)
+accuracy_DT = accuracy_score(Test_y, Pred_y_DT)
+accuracy_DT_train = accuracy_score(Train_y, Pred_y_DT_train)
 
 print('##########')
-print('Using Random Forest:')
+print('Using Decision Tree:')
 print('Healthy vs Screening Stage Cancer')
-print(classification_report_RF)
-print(confusion_matrix_RF)
-print(f'Training accuracy: {accuracy_RF_train}')
-print(f'Testing accuracy: {accuracy_RF}')
+print(classification_report_DT)
+print(confusion_matrix_DT)
+print(f'\nTraining accuracy: {accuracy_DT_train}')
+print(f'\nTesting accuracy: {accuracy_DT}')
 
 ##### Healthy vs Early Stage Cancer
 
@@ -136,21 +136,21 @@ scaler = StandardScaler()
 Train_X = scaler.fit_transform(Train_X)
 Test_X = scaler.transform(Test_X)
 
-random_forest = RandomForestClassifier(random_state=0, class_weight='balanced')
-random_forest.fit(Train_X, Train_y)
+decision_tree = DecisionTreeClassifier(random_state=0, class_weight='balanced')
+decision_tree.fit(Train_X, Train_y)
 
-Pred_y_RF = random_forest.predict(Test_X)
-Pred_y_RF_train = random_forest.predict(Train_X)
+Pred_y_DT = decision_tree.predict(Test_X)
+Pred_y_DT_train = decision_tree.predict(Train_X)
 
-classification_report_RF = classification_report(Test_y, Pred_y_RF)
-confusion_matrix_RF = confusion_matrix(Test_y, Pred_y_RF)
-accuracy_RF = accuracy_score(Test_y, Pred_y_RF)
-accuracy_RF_train = accuracy_score(Train_y, Pred_y_RF_train)
+classification_report_DT = classification_report(Test_y, Pred_y_DT)
+confusion_matrix_DT = confusion_matrix(Test_y, Pred_y_DT)
+accuracy_DT = accuracy_score(Test_y, Pred_y_DT)
+accuracy_DT_train = accuracy_score(Train_y, Pred_y_DT_train)
 
 print('##########')
-print('Using Random Forest:')
+print('Using Decision Tree:')
 print('Healthy vs Early Stage Cancer')
-print(classification_report_RF)
-print(confusion_matrix_RF)
-print(f'Training accuracy: {accuracy_RF_train}')
-print(f'Testing accuracy: {accuracy_RF}')
+print(classification_report_DT)
+print(confusion_matrix_DT)
+print(f'Training accuracy: {accuracy_DT_train}')
+print(f'Testing accuracy: {accuracy_DT}')
