@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 
 ##### HEALTHY VS CANCER
 
-Train_data = 'data/Train_Set.csv'
-Test_data = 'data/Test_Set.csv'
+Train_data = '../data/Train_Set.csv'
+Test_data = '../data/Test_Set.csv'
 
 Train_dataset = pd.read_csv(Train_data)
 Test_dataset = pd.read_csv(Test_data)
@@ -63,8 +63,8 @@ plt.show()
 
 ##### HEALTHY VS SCREENING STAGE CANCER
 
-Train_data = 'data/Train_Set.csv'
-Test_data = 'data/Test_Set.csv'
+Train_data = '../data/Train_Set.csv'
+Test_data = '../data/Test_Set.csv'
 
 Train_dataset = pd.read_csv(Train_data)
 Test_dataset = pd.read_csv(Test_data)
@@ -110,8 +110,8 @@ print(f'\nTesting accuracy: {accuracy_DT}')
 
 ##### Healthy vs Early Stage Cancer
 
-Train_data = 'data/Train_Set.csv'
-Test_data = 'data/Test_Set.csv'
+Train_data = '../data/Train_Set.csv'
+Test_data = '../data/Test_Set.csv'
 
 Train_dataset = pd.read_csv(Train_data)
 Test_dataset = pd.read_csv(Test_data)
